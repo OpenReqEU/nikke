@@ -30,9 +30,11 @@ def get_proposed(data):
                     proposed.append(dep)
     return proposed
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['POST'])
 def main():
     data = request.get_json()
+    if data is None:
+    	return 'No data posted!'
     proposed = get_proposed(data)
     return json.dumps(proposed)
 
