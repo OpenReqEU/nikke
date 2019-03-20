@@ -13,7 +13,7 @@ Nikke checks cross references from Qt jira data comments and reports them as pro
 	
 ## Public APIs
 
-The API is documented by using Swagger2: http://217.172.12.199:9209/swagger-ui.html
+The service has not been deployed yet. Thus, there's no public API available.
 
 ## How to Install
 
