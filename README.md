@@ -20,6 +20,7 @@ POST http://217.172.12.199:9209/
 With Docker installed:
 
 docker build . -t nikke
+
 docker run -p 9209:9209 nikke
 
 ## How to Use This Microservice
