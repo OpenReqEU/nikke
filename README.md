@@ -13,15 +13,20 @@ Nikke checks cross references from Qt jira data comments and reports them as pro
 	
 ## Public APIs
 
-The service has not been deployed yet. Thus, there's no public API available.
+POST http://217.172.12.199:9209/
 
 ## How to Install
 
-Istall the docker file.
+With Docker installed:
+
+docker build . -t nikke
+docker run -p 9209:9209 nikke
 
 ## How to Use This Microservice
 
-The swagger page describes all endpoints. 
+POST hostname:port/
+
+Include requirements in the request body. Returns a list of proposed dependencies.
 
 ## Notes for Developers
 
