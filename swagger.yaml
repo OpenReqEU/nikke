@@ -1,0 +1,164 @@
+swagger: '2.0'
+info:
+  description: 'UH Cross Reference Detector for Qt Jira data.'
+  version: '1.0'
+  title: Nikke
+paths:
+  /:
+    post:
+      tags:
+        - nikke-controller
+      summary: 'Searches for cross references in Qt Jira requirement comments and returns proposed dependencies.'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: requirements
+          description: List of requirements in OpenReq JSON format
+          required: true
+          schema:
+            properties:
+              requirements:
+                type: array
+                items:
+                  $ref: '#/definitions/Requirement'
+      responses:
+        '200':
+          description: 'Success, returns a list of dependencies as OpenReq JSON'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Dependency'
+        '500':
+          description: 'Internal error'
+definitions:
+  Requirement:
+      type: object
+      properties:
+        children:
+          type: array
+          items:
+            $ref: '#/definitions/Requirement'
+        comments:
+          type: array
+          items:
+            $ref: '#/definitions/Comment'
+        created_at:
+          type: integer
+          format: int64
+        id:
+          type: string
+        modified_at:
+          type: integer
+          format: int64
+        name:
+          type: string
+        priority:
+          type: integer
+          format: int32
+        requirementParts:
+          type: array
+          items:
+            $ref: '#/definitions/RequirementPart'
+        requirement_type:
+          type: string
+          enum:
+            - PROSE
+            - REQUIREMENT
+            - FUNCTIONAL
+            - NON_FUNCTIONAL
+            - ISSUE
+            - USER_STORY
+            - EPIC
+            - INITIATIVE
+            - TASK
+            - BUG
+        status:
+          type: string
+          enum:
+            - SUBMITTED
+            - PENDING
+            - ACCEPTED
+            - DRAFT
+            - DEFERRED
+            - OPEN
+            - PLANNED
+            - COMPLETED
+            - REJECTED
+            - RECOMMENDED
+            - IN_PROGRESS
+        text:
+          type: string
+  RequirementPart:
+    type: object
+    properties:
+      created_at:
+        type: integer
+        format: int64
+      id:
+        type: string
+      name:
+        type: string
+      text:
+        type: string
+  Comment:
+    type: object
+    properties:
+      commentDoneBy:
+        $ref: '#/definitions/Person'
+      created_at:
+        type: integer
+        format: int64
+      id:
+        type: string
+      modified_at:
+        type: integer
+        format: int64
+      text:
+        type: string
+  Dependency:
+    type: object
+    properties:
+      created_at:
+        type: integer
+        format: int64
+      dependency_score:
+        type: number
+        format: double
+      dependency_type:
+        type: string
+        enum:
+          - CONTRIBUTES
+          - DAMAGES
+          - REFINES
+          - REQUIRES
+          - INCOMPATIBLE
+          - DECOMPOSITION
+          - SIMILAR
+          - DUPLICATES
+          - REPLACES
+      description:
+        type: array
+        items:
+          type: string
+      fromid:
+        type: string
+      id:
+        type: string
+      status:
+        type: string
+        enum:
+          - PROPOSED
+          - ACCEPTED
+          - REJECTED
+      toid:
+        type: string
+  Person:
+    type: object
+    properties:
+      email:
+        type: string
+      username:
+        type: string
