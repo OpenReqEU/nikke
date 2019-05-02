@@ -3,6 +3,7 @@ info:
   description: 'UH Cross Reference Detector for Qt Jira data.'
   version: '1.0'
   title: Nikke
+host: 'localhost:9209'
 paths:
   /:
     post:
