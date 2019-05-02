@@ -25,7 +25,7 @@ docker run -p 9209:9209 nikke
 
 ## How to Use This Microservice
 
-POST hostname:port/
+POST /
 
 Include requirements in the request body. Returns a list of proposed dependencies.
 
