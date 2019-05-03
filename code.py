@@ -2,6 +2,7 @@ import json
 import re
 from flask import Flask
 from flask import request
+from flask import abort
 app = Flask(__name__)
 
 PROJECTS = 'QTSOLBUG|QTSYSADM|QTJIRA|QSR|QDS|QTVSADDINBUG|QTWEBSITE|AUTOSUITE|PYSIDE|QTCOMPONENTS|QTIFW|QBS|QTMOBILITY|QTQAINFRA|QT3DS|QTCREATORBUG|QTBUG|QTWB|QTPLAYGROUND'
@@ -33,8 +34,8 @@ def get_proposed(data):
 @app.route("/", methods=['POST'])
 def main():
     data = request.get_json()
-    if data is None:
-    	return 'No data posted!'
+    if data is None or 'requirements' not in data:
+    	abort(400, 'No requirements array in data posted!')
     proposed = get_proposed(data)
     return json.dumps(proposed)
 
