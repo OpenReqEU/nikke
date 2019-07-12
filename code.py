@@ -41,4 +41,5 @@ def main():
 
 
 if __name__ == '__main__':
+    response.timeout = 1000
     app.run()
