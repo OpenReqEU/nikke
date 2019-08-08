@@ -37,7 +37,7 @@ def main():
     if data is None or 'requirements' not in data:
     	abort(400, 'No requirements array in data posted!')
     proposed = get_proposed(data)
-    return json.dumps({"dependencies" : proposed})
+    return json.dumps(proposed)
 
 
 if __name__ == '__main__':

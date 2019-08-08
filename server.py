@@ -22,7 +22,7 @@ if __name__ == '__main__':
     server.socket_host = "0.0.0.0"
     server.socket_port = 9209
     server.thread_pool = 30
-    server.socket_timeout = 500
+    server.socket_timeout = 300
     server.max_request_body_size = 0
 
     # For SSL Support
