@@ -18,8 +18,10 @@ if __name__ == '__main__':
     # Instantiate a new server object
     server = cherrypy._cpserver.Server()
 
+    cherrypy.config.update('settings.cfg')
+
     # Configure the server object
-    server.socket_host = "0.0.0.0"
+    server.socket_host = cherrypy.config.get("server.socket_host")
     server.socket_port = 9209
     server.thread_pool = 30
     server.socket_timeout = 300
