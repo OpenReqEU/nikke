@@ -1,11 +1,13 @@
 import json
 import re
+import os
 from flask import Flask
 from flask import request
 from flask import abort
 app = Flask(__name__)
 
-PROJECTS = 'QTSOLBUG|QTSYSADM|QTJIRA|QSR|QDS|QTVSADDINBUG|QTWEBSITE|AUTOSUITE|PYSIDE|QTCOMPONENTS|QTIFW|QBS|QTMOBILITY|QTQAINFRA|QT3DS|QTCREATORBUG|QTBUG|QTWB|QTPLAYGROUND|QTPM|QTPMO|COIN'
+app.config.from_pyfile("nikke.conf", silent=False)
+PROJECTS = app.config.get("PROJECTS")
 ISSUEPATTERN = re.compile(r'(('+PROJECTS+')-[0-9]{1,5})')
 
 def get_proposed(data):

@@ -18,7 +18,7 @@ if __name__ == '__main__':
     # Instantiate a new server object
     server = cherrypy._cpserver.Server()
 
-    cherrypy.config.update('settings.cfg')
+    cherrypy.config.update('server.cfg')
 
     # Configure the server object
     server.socket_host = cherrypy.config.get("server.socket_host")

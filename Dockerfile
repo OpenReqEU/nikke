@@ -4,7 +4,9 @@ ADD code.py /
 
 ADD server.py /
 
-ADD settings.cfg /
+ADD server.cfg /
+
+ADD nikke.conf /
 
 RUN apk update && apk add --no-cache python3 && pip3 install flask && pip3 install cherrypy
 
